@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>土地フル合同会社 ｜ 遊休地・相続地の土地活用・開発コンサルティング</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --konsumi: #1C2B3A;      /* 紺墨：信頼の基調色 */
+    --konsumi-deep: #121C27;
+    --kinari: #F3F1EA;       /* 生成り：紙の地色 */
+    --kinari-soft: #EDEAE0;
+    --shu: #A33B2E;          /* 朱：印章のアクセント */
+    --shu-deep: #862F25;
+    --sumi: #1A1A1A;         /* 墨：本文の色 */
+    --nezu: #66707A;         /* 鼠：補足テキスト */
+    --keisen: #D8D3C5;       /* 罫線：細い線 */
+    --white: #FFFFFF;
+
+    --font-mincho: "Shippori Mincho", serif;
+    --font-gothic: "Zen Kaku Gothic New", sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family: var(--font-gothic);
+    color: var(--sumi);
+    background: var(--kinari);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  :focus-visible{
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--konsumi);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px;
+    height: 1px;
+    background: var(--shu-deep);
+    display:inline-block;
+  }
+
+  h1, h2, h3{
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    color: var(--konsumi);
+  }
+
+  /* ===== Header ===== */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(243,241,234,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--keisen);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 16px 24px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--konsumi);
+  }
+  .brand-mark{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--shu);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--font-mincho);
+    font-size: 15px;
+    color: var(--shu);
+    flex-shrink:0;
+  }
+  nav.main-nav{
+    display:flex;
+    align-items:center;
+    gap: 32px;
+  }
+  nav.main-nav a{
+    font-size: 14px;
+    color: var(--konsumi);
+    font-weight: 500;
+    white-space:nowrap;
+  }
+  nav.main-nav a:hover{ color: var(--shu-deep); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: all .2s ease;
+    white-space:nowrap;
+    border: 1px solid transparent;
+  }
+  .btn-primary{
+    background: var(--shu);
+    color: var(--white);
+  }
+  .btn-primary:hover{ background: var(--shu-deep); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--konsumi);
+    border-color: var(--konsumi);
+  }
+  .btn-ghost:hover{ background: var(--konsumi); color: var(--white); }
+  .btn-small{ padding: 10px 20px; font-size: 13px; }
+
+  .header-cta{ display:flex; align-items:center; gap:16px; }
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    width: 32px;
+    height: 24px;
+    position:relative;
+    cursor:pointer;
+  }
+  .menu-toggle span{
+    position:absolute; left:0; width:100%; height:2px; background:var(--konsumi);
+  }
+  .menu-toggle span:nth-child(1){ top:0; }
+  .menu-toggle span:nth-child(2){ top:11px; }
+  .menu-toggle span:nth-child(3){ top:22px; }
+
+  /* ===== Hero ===== */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding: 88px 0 96px;
+    background: var(--kinari);
+  }
+  .hero-pattern{
+    position:absolute;
+    inset:0;
+    opacity: 0.5;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, var(--keisen) 39px, var(--keisen) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, var(--keisen) 39px, var(--keisen) 40px);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+  }
+  .hero-contour{
+    position:absolute;
+    right: -120px;
+    top: -60px;
+    width: 560px;
+    height: 560px;
+    opacity: 0.35;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    max-width: 720px;
+  }
+  .hero h1{
+    font-size: clamp(32px, 5vw, 50px);
+    line-height: 1.45;
+    margin-bottom: 26px;
+    letter-spacing: 0.01em;
+  }
+  .hero h1 .accent{ color: var(--shu); }
+  .hero p.lead{
+    font-size: 16px;
+    color: var(--nezu);
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
+  .hero-cta{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 56px; }
+
+  .hero-foot{
+    display:flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--keisen);
+    max-width: 640px;
+  }
+  .hero-foot-item{ font-size: 13px; color: var(--nezu); }
+  .hero-foot-item strong{
+    display:block;
+    font-family: var(--font-mincho);
+    font-size: 15px;
+    color: var(--konsumi);
+    margin-bottom: 4px;
+  }
+
+  /* ===== Section base ===== */
+  section{ padding: 96px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head h2{ font-size: clamp(24px, 3.4vw, 32px); line-height:1.5; }
+  .section-head p{ color: var(--nezu); margin-top: 16px; font-size: 15px; }
+
+  .alt-bg{ background: var(--kinari-soft); }
+
+  /* ===== お悩み Section ===== */
+  .worry-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .worry-card{
+    background: var(--white);
+    border: 1px solid var(--keisen);
+    border-radius: 6px;
+    padding: 36px 32px;
+  }
+  .worry-card-head{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--keisen);
+  }
+  .worry-tag{
+    font-family: var(--font-mincho);
+    font-size: 13px;
+    color: var(--white);
+    background: var(--konsumi);
+    padding: 6px 14px;
+    border-radius: 3px;
+    white-space:nowrap;
+  }
+  .worry-card h3{ font-size: 19px; font-weight: 600; }
+  .worry-card ul{ list-style:none; }
+  .worry-card li{
+    position:relative;
+    padding-left: 22px;
+    margin-bottom: 14px;
+    font-size: 14.5px;
+    color: var(--sumi);
+  }
+  .worry-card li::before{
+    content:"・";
+    position:absolute;
+    left:0;
+    color: var(--shu);
+    font-weight:700;
+  }
+  .worry-card li:last-child{ margin-bottom:0; }
+
+  /* ===== 強み Section ===== */
+  .strength-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--keisen);
+    border: 1px solid var(--keisen);
+  }
+  .strength-card{
+    background: var(--kinari);
+    padding: 36px 28px;
+  }
+  .strength-mark{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid var(--shu);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--font-mincho);
+    color: var(--shu);
+    font-size: 16px;
+    margin-bottom: 22px;
+  }
+  .strength-card h3{
+    font-size: 16.5px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .strength-card p{ font-size: 13.5px; color: var(--nezu); }
+
+  /* ===== 法令 Section ===== */
+  .law-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--keisen);
+    border: 1px solid var(--keisen);
+    margin-bottom: 28px;
+  }
+  .law-card{
+    background: var(--white);
+    padding: 30px 26px;
+  }
+  .law-card .law-name{
+    font-family: var(--font-mincho);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--konsumi);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .law-card .law-name small{
+    display:block;
+    font-family: var(--font-gothic);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--shu-deep);
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .law-card p{ font-size: 13.5px; color: var(--nezu); }
+  .law-sources{
+    border-top: 1px solid var(--keisen);
+    padding-top: 24px;
+  }
+  .law-sources p.lead-note{
+    font-size: 13.5px;
+    color: var(--nezu);
+    margin-bottom: 16px;
+  }
+  .law-sources ul{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px 28px;
+  }
+  .law-sources li{ font-size: 13px; }
+  .law-sources li a{
+    color: var(--konsumi);
+    border-bottom: 1px solid var(--keisen);
+    transition: color .2s, border-color .2s;
+  }
+  .law-sources li a:hover{ color: var(--shu-deep); border-color: var(--shu-deep); }
+
+  /* ===== サービス Section ===== */
+  .service-list{ display:flex; flex-direction:column; }
+  .service-row{
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--keisen);
+    align-items: start;
+  }
+  .service-row:first-child{ border-top: 1px solid var(--keisen); }
+  .service-num{
+    font-family: var(--font-mincho);
+    font-size: 13px;
+    color: var(--shu-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .service-row h3{ font-size: 19px; }
+  .service-row p{ font-size: 14.5px; color: var(--nezu); }
+
+  /* ===== 流れ Section ===== */
+  .flow-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position:relative;
+  }
+  .flow-step{
+    padding: 0 24px 0 0;
+    position:relative;
+  }
+  .flow-step:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top: 26px;
+    right: -2px;
+    width: 14px;
+    height: 1px;
+    background: var(--nezu);
+  }
+  .flow-num{
+    font-family: var(--font-mincho);
+    font-size: 30px;
+    color: var(--shu);
+    margin-bottom: 18px;
+    display:block;
+  }
+  .flow-step h3{ font-size: 16px; margin-bottom: 10px; }
+  .flow-step p{ font-size: 13.5px; color: var(--nezu); }
+
+  /* ===== FAQ Section ===== */
+  .faq-list{ max-width: 760px; }
+  details{
+    border-bottom: 1px solid var(--keisen);
+    padding: 22px 0;
+  }
+  details:first-of-type{ border-top: 1px solid var(--keisen); }
+  summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap: 16px;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--konsumi);
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary .q-mark{
+    font-family: var(--font-mincho);
+    color: var(--shu);
+    flex-shrink:0;
+  }
+  summary .toggle-icon{
+    flex-shrink:0;
+    width: 20px;
+    height: 20px;
+    position:relative;
+  }
+  summary .toggle-icon::before, summary .toggle-icon::after{
+    content:"";
+    position:absolute;
+    background: var(--konsumi);
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+  }
+  summary .toggle-icon::before{ width:12px; height:1.5px; }
+  summary .toggle-icon::after{ width:1.5px; height:12px; transition: transform .2s; }
+  details[open] summary .toggle-icon::after{ transform: translate(-50%,-50%) rotate(90deg); opacity:0; }
+  details p{
+    margin-top: 14px;
+    padding-left: 30px;
+    font-size: 14.5px;
+    color: var(--nezu);
+  }
+
+  /* ===== CTA Section ===== */
+  .cta-section{
+    background: var(--konsumi);
+    color: var(--kinari);
+    text-align:center;
+    padding: 110px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
+  }
+  .stamp{
+    position:relative;
+    z-index:1;
+    width: 116px;
+    height: 116px;
+    margin: 0 auto 36px;
+    border-radius: 50%;
+    border: 2.5px solid var(--shu);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform: rotate(-8deg);
+  }
+  .stamp::before{
+    content:"";
+    position:absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--shu);
+  }
+  .stamp span{
+    font-family: var(--font-mincho);
+    color: var(--shu);
+    font-size: 17px;
+    line-height: 1.3;
+    text-align:center;
+    letter-spacing: 0.06em;
+  }
+  .cta-section h2{
+    position:relative; z-index:1;
+    color: var(--kinari);
+    font-size: clamp(24px, 3.6vw, 34px);
+    margin-bottom: 18px;
+  }
+  .cta-section p{
+    position:relative; z-index:1;
+    color: #B9C2CC;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-size: 15px;
+  }
+  .cta-buttons{ position:relative; z-index:1; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .cta-section .btn-ghost{ color: var(--kinari); border-color: #4A5A6B; }
+  .cta-section .btn-ghost:hover{ background: rgba(255,255,255,0.08); }
+
+  /* ===== Footer ===== */
+  footer{
+    background: var(--konsumi-deep);
+    color: #8A95A1;
+    padding: 56px 0 32px;
+    font-size: 13.5px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family: var(--font-mincho);
+    color: var(--kinari);
+    font-size: 17px;
+    margin-bottom: 16px;
+  }
+  footer h4{
+    color: var(--kinari);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  footer ul{ list-style:none; }
+  footer li{ margin-bottom: 10px; }
+  footer li a:hover{ color: var(--kinari); }
+  .footer-bottom{
+    border-top: 1px solid #2A3A4A;
+    padding-top: 24px;
+    font-size: 12.5px;
+    color: #6E7A87;
+  }
+
+  /* ===== Reveal animation ===== */
+  .reveal{
+    opacity:0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 880px){
+    .strength-grid, .law-grid{ grid-template-columns: repeat(2,1fr); }
+    .flow-grid{ grid-template-columns: repeat(2,1fr); row-gap: 40px; }
+    .flow-step:nth-child(2)::after{ display:none; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 760px){
+    nav.main-nav{
+      position:absolute;
+      top: 100%; left:0; right:0;
+      background: var(--kinari);
+      border-bottom: 1px solid var(--keisen);
+      flex-direction:column;
+      align-items:flex-start;
+      gap: 0;
+      padding: 8px 24px 20px;
+      display:none;
+    }
+    nav.main-nav.is-open{ display:flex; }
+    nav.main-nav a{ padding: 12px 0; width:100%; border-bottom:1px solid var(--keisen); }
+    .menu-toggle{ display:block; }
+    .header-cta .btn-small{ display:none; }
+    .worry-grid{ grid-template-columns: 1fr; }
+    .service-row{ grid-template-columns: 1fr; gap: 12px; }
+    .strength-grid{ grid-template-columns: 1fr 1fr; }
+    .flow-grid{ grid-template-columns: 1fr 1fr; }
+    .law-grid{ grid-template-columns: 1fr 1fr; }
+    .footer-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .hero{ padding: 64px 0 64px; }
+    section{ padding: 64px 0; }
+  }
+
+  @media (max-width: 480px){
+    .strength-grid, .flow-grid, .law-grid{ grid-template-columns: 1fr; }
+    .flow-step::after{ display:none !important; }
+    .hero-cta .btn, .cta-buttons .btn{ width:100%; }
+  }
+  /* ===== 会社概要 ===== */
+  .company-table{ max-width: 760px; border-top: 1px solid var(--keisen); }
+  .company-table > div{
+    display:grid; grid-template-columns: 160px 1fr; gap: 16px;
+    padding: 18px 0; border-bottom: 1px solid var(--keisen);
+  }
+  .company-table dt{ font-weight:700; color: var(--konsumi); font-size: 14px; letter-spacing: 0.06em; }
+  .company-table dd{ color: var(--sumi); font-size: 15px; line-height: 1.8; }
+  .company-table a{ color: var(--konsumi); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 480px){
+    .company-table > div{ grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">地</span>
+      土地フル合同会社
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#worry">お悩み</a>
+      <a href="#strength">選ばれる理由</a>
+      <a href="#law">関わる法律</a>
+      <a href="#service">サービス内容</a>
+      <a href="#flow">相談の流れ</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#company">会社概要</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-primary btn-small">無料相談</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-pattern" aria-hidden="true"></div>
+    <svg class="hero-contour" viewBox="0 0 400 400" aria-hidden="true">
+      <g fill="none" stroke="#1C2B3A" stroke-width="1">
+        <path d="M40,200 Q100,80 220,90 T360,180 Q380,260 300,320 T140,350 Q40,320 40,200 Z"/>
+        <path d="M80,200 Q120,120 220,130 T320,190 Q335,250 280,290 T160,310 Q90,290 80,200 Z"/>
+        <path d="M120,200 Q150,150 220,160 T280,200 Q290,240 255,265 T180,275 Q130,260 120,200 Z"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="eyebrow">土地活用・開発コンサルティング</p>
+        <h1>遊休地も、相続した土地も。<br>その先の一手を、<span class="accent">行政対応の専門家</span>とともに。</h1>
+        <p class="lead">
+          都市計画法や開発許認可など、行政・官庁との折衝を数多く手がけてきた専門家が、複雑な手続きと活用の判断を整理し、根拠に基づいたプランを分かりやすくご提案します。
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">無料相談を申し込む</a>
+          <a href="#service" class="btn btn-ghost">サービス内容を見る</a>
+        </div>
+        <div class="hero-foot">
+          <div class="hero-foot-item"><strong>調査・提案・行政協議</strong>ワンストップで対応</div>
+          <div class="hero-foot-item"><strong>遠方の土地</strong>でも現地調査から対応可能</div>
+          <div class="hero-foot-item"><strong>初回相談</strong>無料・オンライン可</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== お悩み ===== -->
+  <section id="worry">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">こんなお悩みありませんか</p>
+        <h2>「持っているけれど、どうしたらいいか分からない」<br>そのお気持ちに、まず向き合います。</h2>
+      </div>
+      <div class="worry-grid">
+        <div class="worry-card reveal">
+          <div class="worry-card-head">
+            <span class="worry-tag">遊休地・空き地</span>
+            <h3>お持ちの方</h3>
+          </div>
+          <ul>
+            <li>固定資産税だけがかかり、活用方法が分からない</li>
+            <li>草刈りや管理の手間が年々負担になっている</li>
+            <li>売却すべきか、活用すべきか判断がつかない</li>
+            <li>近隣や自治体からの指摘・相談への対応が必要になった</li>
+          </ul>
+        </div>
+        <div class="worry-card reveal">
+          <div class="worry-card-head">
+            <span class="worry-tag">相続で土地を</span>
+            <h3>持つことになった方</h3>
+          </div>
+          <ul>
+            <li>何から手をつければよいのか分からない</li>
+            <li>登記・税務・行政手続きが重なり、時間が取れない</li>
+            <li>遠方に住んでいて、現地の管理や確認ができない</li>
+            <li>ご家族・ご親族の間で活用方針が決まらない</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 選ばれる理由 ===== -->
+  <section id="strength" class="alt-bg">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">選ばれる理由</p>
+        <h2>行政対応の実務経験を、<br>そのまま土地所有者様の安心に。</h2>
+      </div>
+      <div class="strength-grid reveal">
+        <div class="strength-card">
+          <div class="strength-mark">行</div>
+          <h3>行政・官庁対応の実績</h3>
+          <p>都市計画法や開発許認可など、行政との折衝・協議を数多く経験。提携する行政書士と連携し、申請準備から協議まで一貫してサポートします。</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-mark">証</div>
+          <h3>根拠に基づくご提案</h3>
+          <p>法令・制度・周辺の市場動向を丁寧に調査し、根拠を明示したうえで活用プランをご提案します。</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-mark">解</div>
+          <h3>分かりやすいご説明</h3>
+          <p>専門用語をかみ砕き、図表や資料を用いて、初めての方にも分かりやすくご説明します。</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-mark">通</div>
+          <h3>ワンストップ対応</h3>
+          <p>現地調査・提案・行政協議・実行支援まで、行政書士・登記・税務の専門家との連携も含めて一貫してサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== サービス内容 ===== -->
+  <section id="service">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">サービス内容</p>
+        <h2>土地の状況に合わせて、<br>必要な支援をお選びいただけます。</h2>
+      </div>
+      <div class="service-list reveal">
+        <div class="service-row">
+          <div>
+            <span class="service-num">Service 01</span>
+            <h3>土地活用プランのご提案</h3>
+          </div>
+          <p>法令・都市計画・市場調査に基づき、立地条件や所有者様のご希望に適した活用方法をご提案します。賃貸・売却・事業化など複数の選択肢を比較検討いただけます。</p>
+        </div>
+        <div class="service-row">
+          <div>
+            <span class="service-num">Service 02</span>
+            <h3>開発事業化・パートナー提案</h3>
+          </div>
+          <p>規模の大きな開発や事業化をご検討の場合は、開発事業者との連携や事業計画づくりまで含めてご提案します。</p>
+        </div>
+        <div class="service-row">
+          <div>
+            <span class="service-num">Service 03</span>
+            <h3>行政手続き・許認可サポート</h3>
+          </div>
+          <p>都市計画法・森林法・農地法などに基づく許認可について、必要な手続きの整理や、自治体・関係機関との事前協議をサポートします。申請書類の作成・提出は、提携する行政書士と連携して対応します。</p>
+        </div>
+        <div class="service-row">
+          <div>
+            <span class="service-num">Service 04</span>
+            <h3>相続地の整理・活用サポート</h3>
+          </div>
+          <p>登記・税務の専門家と連携し、相続した土地の状況整理から、活用・処分の方針決定までを丁寧にサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 関わる法律 ===== -->
+  <section id="law" class="alt-bg">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">根拠としている法令</p>
+        <h2>土地活用のご相談で、<br>多くの場合に関わる4つの法律です。</h2>
+        <p>遊休地・相続地は、農地や山林であるケース、市街化調整区域にあるケースなど状況がさまざまです。最初のヒアリングで、以下のどの法令が関わるかを整理します。</p>
+      </div>
+      <div class="law-grid reveal">
+        <div class="law-card">
+          <p class="law-name"><small>区域・開発の許可</small>都市計画法</p>
+          <p>建物の建築や土地の造成を行う際、区域によっては都道府県知事等の開発許可が必要になります（第29条・第34条等）。</p>
+        </div>
+        <div class="law-card">
+          <p class="law-name"><small>造成・盛土の規制</small>宅地造成及び特定盛土等規制法</p>
+          <p>盛土・切土を伴う造成を行う場合、規制区域内では許可または届出が必要です。通称「盛土規制法」。</p>
+        </div>
+        <div class="law-card">
+          <p class="law-name"><small>山林の場合</small>森林法</p>
+          <p>土地が山林の場合、一定規模を超える開発には林地開発許可（第10条の2）が必要になることがあります。</p>
+        </div>
+        <div class="law-card">
+          <p class="law-name"><small>農地の場合</small>農地法</p>
+          <p>土地が農地の場合、転用や権利移動には許可・届出が必要です。相続で取得した農地には届出義務があります（第3条の3）。</p>
+        </div>
+      </div>
+      <div class="law-sources reveal">
+        <p class="lead-note">各法令の条文は、国の法令検索サイト（e-Gov）および所管省庁の解説ページでご確認いただけます。ご相談の際には、根拠となる条文を明示した資料もあわせてご用意します。</p>
+        <ul>
+          <li><a href="https://laws.e-gov.go.jp/law/343AC0000000100" target="_blank" rel="noopener">都市計画法（e-Gov）</a></li>
+          <li><a href="https://laws.e-gov.go.jp/law/336AC0000000191" target="_blank" rel="noopener">宅地造成及び特定盛土等規制法（e-Gov）</a></li>
+          <li><a href="https://laws.e-gov.go.jp/law/326AC1000000249" target="_blank" rel="noopener">森林法（e-Gov）</a></li>
+          <li><a href="https://laws.e-gov.go.jp/law/327AC0000000229" target="_blank" rel="noopener">農地法（e-Gov）</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 相談の流れ ===== -->
+  <section id="flow">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">ご相談の流れ</p>
+        <h2>初めてのご相談から、<br>実行までの道筋をご案内します。</h2>
+      </div>
+      <div class="flow-grid reveal">
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <h3>無料相談</h3>
+          <p>土地の状況やお悩みを、まずはオンラインまたは対面でお伺いします。</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <h3>現地調査・法令確認</h3>
+          <p>現地調査と、関連する法令・都市計画・権利関係の確認を行います。</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <h3>活用プランのご提案</h3>
+          <p>調査結果に基づき、根拠を明示した活用プラン・事業計画をご提示します。</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">04</span>
+          <h3>行政協議・実行支援</h3>
+          <p>必要な許認可申請（提携行政書士と連携）や行政との協議、実行段階までを継続してサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="alt-bg">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">よくあるご質問</p>
+        <h2>ご相談前に気になる点を<br>まとめてご紹介します。</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details open>
+          <summary><span><span class="q-mark">Q.</span> 相談だけでも依頼できますか？</span><span class="toggle-icon"></span></summary>
+          <p>はい、まずは無料相談から承っております。活用すべきかどうかの判断段階でも、お気軽にご相談ください。</p>
+        </details>
+        <details>
+          <summary><span><span class="q-mark">Q.</span> 遠方に住んでいても依頼できますか？</span><span class="toggle-icon"></span></summary>
+          <p>はい、現地調査から行政手続き（提携行政書士と連携）まで一貫して対応いたします。オンラインでのご相談も可能です。</p>
+        </details>
+        <details>
+          <summary><span><span class="q-mark">Q.</span> 相続した土地の名義がまだ自分でない場合でも相談できますか？</span><span class="toggle-icon"></span></summary>
+          <p>可能です。登記が完了していない段階でも、今後の進め方についてご相談いただけます。</p>
+        </details>
+        <details>
+          <summary><span><span class="q-mark">Q.</span> 費用はどのくらいかかりますか？</span><span class="toggle-icon"></span></summary>
+          <p>ご相談内容や土地の規模に応じてお見積りいたします。初回のご相談は無料です。</p>
+        </details>
+        <details>
+          <summary><span><span class="q-mark">Q.</span> 行政書士・登記・税務の専門家への相談も必要ですか？</span><span class="toggle-icon"></span></summary>
+          <p>許認可の申請書類は、提携する行政書士が担当します。登記・税務についても、必要に応じて連携する専門家をご紹介します。窓口は当社が一括して承ります。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 会社概要 ===== -->
+  <section id="company">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">会社概要</p>
+        <h2>土地フル合同会社</h2>
+      </div>
+      <dl class="company-table reveal">
+        <div><dt>商号</dt><dd>土地フル合同会社</dd></div>
+        <div><dt>代表社員</dt><dd>城野 政幸</dd></div>
+        <div><dt>所在地</dt><dd>〒963-7845<br>福島県石川郡石川町高田264</dd></div>
+        <div><dt>電話</dt><dd><a href="tel:0247576021">0247-57-6021</a></dd></div>
+        <div><dt>メール</dt><dd><a href="mailto:totifuru@gmail.com">totifuru@gmail.com</a></dd></div>
+        <div><dt>受付時間</dt><dd>6:00〜20:00（年中無休）</dd></div>
+        <div><dt>事業内容</dt><dd>土地活用・開発コンサルティング<br>行政手続き・許認可に関するご相談・事前協議の支援<br>相続した土地の整理・活用の支援</dd></div>
+        <div><dt>連携先</dt><dd>行政書士、登記・税務の専門家</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="contact">
+    <div class="wrap">
+      <div class="stamp" aria-hidden="true"><span>相談<br>受付中</span></div>
+      <h2>まずは、無料相談から</h2>
+      <p>土地の活用に迷われている方も、相続で急に土地を持つことになった方も。<br>専門家が丁寧に状況を整理し、次の一手をご提案します。</p>
+      <div class="cta-buttons">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVQdLpDEM_2s_fQXg0APhIsRyn7JNGDeXQBP098VeNXi6Pdg/viewform" target="_blank" rel="noopener" class="btn btn-primary">無料相談を申し込む（フォーム）</a>
+        <a href="tel:0247576021" class="btn btn-ghost">電話で相談する（0247-57-6021）</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark">地</span>
+          土地フル合同会社
+        </div>
+        <p>遊休地・相続地の活用から行政手続きまで、土地所有者様に寄り添ってサポートします。</p>
+      </div>
+      <div>
+        <h4>サイト内リンク</h4>
+        <ul>
+          <li><a href="#worry">お悩み</a></li>
+          <li><a href="#strength">選ばれる理由</a></li>
+          <li><a href="#law">関わる法律</a></li>
+          <li><a href="#service">サービス内容</a></li>
+          <li><a href="#flow">相談の流れ</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="#company">会社概要</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li>〒963-7845<br>福島県石川郡石川町高田264</li>
+          <li>TEL：0247-57-6021</li>
+          <li>受付時間：6:00〜20:00（年中無休）</li>
+          <li>MAIL：<a href="mailto:totifuru@gmail.com">totifuru@gmail.com</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdVQdLpDEM_2s_fQXg0APhIsRyn7JNGDeXQBP098VeNXi6Pdg/viewform" target="_blank" rel="noopener">お問い合わせフォーム</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 土地フル合同会社. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
