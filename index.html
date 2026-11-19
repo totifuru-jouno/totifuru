@@ -53,7 +53,7 @@
 <aside id="site-counter" class="site-counter" aria-label="ホームページ閲覧カウンター">
 <div class="wrap"><div class="counter-inner"><p class="counter-label">ホームページ閲覧数</p>
 <dl aria-live="polite"><div><dt>累計</dt><dd id="counter-total">—</dd></div><div><dt>今日</dt><dd id="counter-today">—</dd></div><div><dt>昨日</dt><dd id="counter-yesterday">—</dd></div></dl></div>
-<small id="counter-note">設置後からの集計です。同じタブで30分以内の再読込は重複集計しません（日本時間）。</small>
+<small id="counter-note">設置後からの集計です。同じブラウザでは、別のタブや開き直しも30分以内は重複集計しません（日本時間）。</small>
 <noscript><small>閲覧数の表示にはJavaScriptを有効にしてください。</small></noscript>
 </div></aside>
 
@@ -77,22 +77,27 @@ document.getElementById('copy').addEventListener('click',async function(){const 
 (function(){
 'use strict';
 var API="https://totifuru-website-counter.hdp4hvtyfv.chatgpt.site/api/count";
-var KEY='totifuru-home-view-v1',now=Date.now(),windowMs=30*60*1000;
-var day=new Date(now+9*60*60*1000).toISOString().slice(0,10);
+var KEY='totifuru-home-view-v1',windowMs=30*60*1000;
 var record=null;
-try{record=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch(e){}
-if(!record||typeof record.token!=='string'||!Number.isFinite(record.created)||record.created>now||now-record.created>=windowMs||record.day!==day){
+function prepare(){
+var now=Date.now();
+var day=new Date(now+9*60*60*1000).toISOString().slice(0,10);
+record=null;
+try{record=JSON.parse(localStorage.getItem(KEY)||sessionStorage.getItem(KEY)||'null');}catch(e){}
+try{localStorage.setItem(KEY+'-check','1');localStorage.removeItem(KEY+'-check');}catch(e){return false;}
+if(!record||typeof record.token!=='string'||!Number.isFinite(record.created)||record.created>now||now-record.created>=windowMs){
 var token;
 if(window.crypto&&crypto.randomUUID)token=crypto.randomUUID();
 else if(window.crypto&&crypto.getRandomValues){var bytes=new Uint8Array(16);crypto.getRandomValues(bytes);bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;var h=Array.from(bytes,function(b){return b.toString(16).padStart(2,'0');}).join('');token=h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20);}
 record=token?{token:token,created:now,day:day,acked:false}:null;
 }
-function save(){try{if(record)sessionStorage.setItem(KEY,JSON.stringify(record));}catch(e){}}
-save();
+return save();
+}
+function save(){try{if(record){localStorage.setItem(KEY,JSON.stringify(record));return true;}}catch(e){}return false;}
 function render(data){
 ['total','today','yesterday'].forEach(function(key){if(!Number.isSafeInteger(data[key])||data[key]<0)throw Error('Invalid count');});
 ['total','today','yesterday'].forEach(function(key){document.getElementById('counter-'+key).textContent=data[key].toLocaleString('ja-JP');});
-if(data.started&&/^20\d\d-\d\d-\d\d$/.test(data.started))document.getElementById('counter-note').textContent=data.started.replace(/-/g,'/')+'から集計。同じタブで30分以内の再読込は重複集計しません（日本時間）。';
+if(data.started&&/^20\d\d-\d\d-\d\d$/.test(data.started))document.getElementById('counter-note').textContent=data.started.replace(/-/g,'/')+'から集計。同じブラウザでは、別のタブや開き直しも30分以内は重複集計しません（日本時間）。';
 }
 async function request(write){
 var controller=new AbortController(),timer=setTimeout(function(){controller.abort();},10000);
@@ -103,15 +108,18 @@ if(write){record.acked=true;save();}
 }finally{clearTimeout(timer);}
 }
 async function load(){
-var write=!!record&&!record.acked;
-try{await request(write);}
+var saved=prepare();
+var write=saved&&!!record&&!record.acked;
+try{await request(write);if(!saved)document.getElementById('counter-note').textContent='ブラウザに記録を保存できないため、この閲覧は加算せず閲覧数のみ表示しています。';}
 catch(e){try{await new Promise(function(resolve){setTimeout(resolve,1200);});await request(write);}catch(second){document.getElementById('counter-note').textContent='現在、閲覧数を読み込めません。時間をおいてご確認ください。';}}
 }
-if(document.visibilityState==='hidden'){document.addEventListener('visibilitychange',function visible(){if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',visible);load();}});}
-else load();
+function start(){if(navigator.locks&&navigator.locks.request){navigator.locks.request(KEY,load).catch(function(){document.getElementById('counter-note').textContent='現在、閲覧数を読み込めません。';});}else load();}
+if(document.visibilityState==='hidden'){document.addEventListener('visibilitychange',function visible(){if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',visible);start();}});}
+else start();
 })();
 </script>
 </body>
 </html>
+
 
 
